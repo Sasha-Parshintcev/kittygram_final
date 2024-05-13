@@ -3,6 +3,7 @@ version: '3'
 volumes:
   pg_data:
   static:
+  media_volume:
 
 services:
   db:
@@ -12,6 +13,9 @@ services:
   backend:
     build: ./backend/
     env_file: .env
+    volumes:
+      - static:/static
+      - media_volume:/media
   frontend:
     env_file: .env
     build: ./frontend/
@@ -25,3 +29,4 @@ services:
       - 9000:80
     volumes:
       - static:/static
+      - media_volume:/media
