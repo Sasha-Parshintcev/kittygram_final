@@ -5,7 +5,7 @@ from .models import Cat
 
 class CatAdmin(admin.ModelAdmin):
     list_display = (
-        'name', 'color', 'birth_year', 'owner', 'achievements', 'image'
+        'name', 'color', 'birth_year', 'owner', 'image'
     )
 
 
