@@ -9,10 +9,13 @@ from .models import Achievement, AchievementCat, Cat
 
 
 class Hex2NameColor(serializers.Field):
+    """Сериализатор имени цвета."""
     def to_representation(self, value):
+        """Функция представления."""
         return value
 
     def to_internal_value(self, data):
+        """Функция внутреннего значения."""
         try:
             data = webcolors.hex_to_name(data)
         except ValueError:
@@ -21,6 +24,7 @@ class Hex2NameColor(serializers.Field):
 
 
 class AchievementSerializer(serializers.ModelSerializer):
+    """Сериализатор достижения."""
     achievement_name = serializers.CharField(source='name')
 
     class Meta:
@@ -29,7 +33,9 @@ class AchievementSerializer(serializers.ModelSerializer):
 
 
 class Base64ImageField(serializers.ImageField):
+    """Сериализатор поля изображения."""
     def to_internal_value(self, data):
+        """Функция внутреннего значения."""
         if isinstance(data, str) and data.startswith('data:image'):
             format, imgstr = data.split(';base64,')
             ext = format.split('/')[-1]
@@ -40,6 +46,7 @@ class Base64ImageField(serializers.ImageField):
 
 
 class CatSerializer(serializers.ModelSerializer):
+    """Сериализатор кота."""
     achievements = AchievementSerializer(required=False, many=True)
     color = Hex2NameColor()
     age = serializers.SerializerMethodField()
@@ -58,14 +65,17 @@ class CatSerializer(serializers.ModelSerializer):
         read_only_fields = ('owner',)
 
     def get_image_url(self, obj):
+        """Функция получения изображения."""
         if obj.image:
             return obj.image.url
         return None
 
     def get_age(self, obj):
+        """Функция получения возраста."""
         return dt.datetime.now().year - obj.birth_year
 
     def create(self, validated_data):
+        """Функция создания кота."""
         if 'achievements' not in self.initial_data:
             cat = Cat.objects.create(**validated_data)
             return cat
@@ -81,6 +91,7 @@ class CatSerializer(serializers.ModelSerializer):
         return cat
 
     def update(self, instance, validated_data):
+        """Функция обновления кота."""
         instance.name = validated_data.get('name', instance.name)
         instance.color = validated_data.get('color', instance.color)
         instance.birth_year = validated_data.get(
