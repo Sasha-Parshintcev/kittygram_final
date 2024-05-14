@@ -96,11 +96,6 @@ jobs:
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Push to DockerHub
-        uses: docker/build-push-action@v4
-        with:
           context: ./frontend/
           push: true
           tags: aleksandrpar/kittygram_frontend:latest
