@@ -15,7 +15,7 @@ services:
     image: aleksandrpar/kittygram_backend
     env_file: .env
     volumes:
-      - static:/static
+      - static:/app/collected_static
       - media:/app/media
     depends_on:
       - db
