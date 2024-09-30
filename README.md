@@ -173,5 +173,5 @@ POST .../api/cats/
 }
 ```
 
-# Проект разработан:
+## Проект разработан:
  - [Sasha-Parshintcev (в роли Python-разработчика)](https://github.com/Sasha-Parshintcev)
