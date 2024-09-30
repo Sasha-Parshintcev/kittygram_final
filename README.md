@@ -1,4 +1,4 @@
-# Проект kittygram_final
+# Проект Kittygram
 
 ## Описание
 
@@ -172,3 +172,6 @@ POST .../api/cats/
     "image": null
 }
 ```
+
+# Проект разработан:
+ - [Sasha-Parshintcev (в роли Python-разработчика)](https://github.com/Sasha-Parshintcev)
