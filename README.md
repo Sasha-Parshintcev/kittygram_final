@@ -97,6 +97,7 @@ POSTGRES_DB=название БД
 DB_HOST=название хоста
 DB_PORT=5432
 SECRET_KEY=django_settings_secret_key
+DEBUG=False
 ALLOWED_HOSTS=127.0.0.1, localhost
 ```
 
